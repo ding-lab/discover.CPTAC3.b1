@@ -1,4 +1,4 @@
-TOKEN="config/gdc-user-token.2017-11-04T01-21-42.215Z.txt"
+TOKEN="token/gdc-user-token.2017-11-04T01-21-42.215Z.txt"
 SRC="/Users/mwyczalk/src/queryGDC/case.discover"
 
 function process_case {
