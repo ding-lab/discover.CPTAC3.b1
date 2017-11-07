@@ -1,0 +1,11 @@
+Discover and analyze submitted reads for all samples for CPTAC3 batch 1.
+
+Makes use of core scripts in queryGDC project (/Users/mwyczalk/src/queryGDC)
+
+
+
+The following cases have no samples:
+    C3L-01744
+    C3L-01861
+
+All other samples seem to have tumor + normal for WGS, WXS, and RNA-Seq
