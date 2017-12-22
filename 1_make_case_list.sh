@@ -1,6 +1,10 @@
 OUT="dat/UCEC_Cases.dat"
 mkdir -p dat
 
+# The following have been removed from the list because they are not on GDC
+# UCEC case C3L-01744
+# CCRC case C3L-01861
+
 # case participant_id copy/pasted from /Users/mwyczalk/Downloads/Updated\ UCEC_TMT10_Batch\ 1_PNNL_UUID_added.xlsx 
 cat > $OUT <<EOF
 C3N-00858
@@ -15,7 +19,6 @@ C3N-00383
 C3N-01001
 C3L-00949
 C3L-00032
-C3L-01744
 C3L-01311
 C3L-01256
 C3L-00358
@@ -43,7 +46,6 @@ C3N-01214
 C3N-00834
 C3N-01261
 C3L-00917
-C3L-01861
 C3L-01352
 C3N-00194
 C3L-00010
