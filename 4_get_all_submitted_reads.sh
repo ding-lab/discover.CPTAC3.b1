@@ -1,5 +1,4 @@
-TOKEN="token/gdc-user-token.2017-11-04T01-21-42.215Z.txt"
-SRC="/Users/mwyczalk/src/queryGDC/case.discover"
+source CPTAC3.b2.paths.sh
 
 function process_case {
 DAT=$1
@@ -10,7 +9,7 @@ while read CASE; do
 
 >&2 echo Processing $CASE
 
-bash $SRC/get_submitted_reads.sh $CASE $TOKEN
+bash "$QUERYGDC_HOME/case.discover/get_submitted_reads.sh" $CASE 
 
 done < $DAT
 }

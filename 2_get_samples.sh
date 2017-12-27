@@ -1,7 +1,5 @@
 source CPTAC3.b2.paths.sh
 
-SRC="queryGDC/case.discover"
-
 function process_case {
 DAT=$1
 
