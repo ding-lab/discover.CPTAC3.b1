@@ -1,7 +1,7 @@
-OUT="dat/SR_merged.dat"
-rm -f $OUT
+source CPTAC3.b2.paths.sh
 
-SRC="/Users/mwyczalk/src/queryGDC/case.discover"
+OUT="dat/$PROJECT.SR.dat"
+rm -f $OUT
 
 function process_case {
 DAT=$1
@@ -13,7 +13,7 @@ while read CASE; do
 
 >&2 echo Processing $CASE
 
-bash $SRC/merge_submitted_reads.sh $CASE $DIS  >> $OUT
+bash "$QUERYGDC_HOME/case.discover/merge_submitted_reads.sh" $CASE $DIS  >> $OUT
 
 done < $DAT
 }

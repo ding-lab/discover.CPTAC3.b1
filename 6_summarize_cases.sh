@@ -1,5 +1,6 @@
-DAT="dat/SR_merged.dat"
-OUT="dat/SR_summary.dat"
+source CPTAC3.b2.paths.sh
+DAT="dat/$PROJECT.SR.dat"
+OUT="dat/$PROJECT.file-summary.dat"
 rm -f $OUT
 
 # Usage: repN X N
