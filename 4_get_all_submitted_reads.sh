@@ -9,7 +9,7 @@ while read CASE; do
 
 >&2 echo Processing $CASE
 
-bash "$QUERYGDC_HOME/case.discover/get_submitted_reads.sh" $CASE 
+bash "$CASEDISCOVER_HOME/get_submitted_reads.sh" $CASE 
 
 done < $DAT
 }

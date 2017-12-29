@@ -1,3 +1,3 @@
-[submodule "queryGDC"]
-	path = queryGDC
-	url = https://github.com/ding-lab/queryGDC
+[submodule "CPTAC3.case.discover"]
+	path = CPTAC3.case.discover
+	url = https://github.com/ding-lab/CPTAC3.case.discover.git

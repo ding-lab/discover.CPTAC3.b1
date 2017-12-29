@@ -13,7 +13,7 @@ while read CASE; do
 
 >&2 echo Processing $CASE
 
-bash "$QUERYGDC_HOME/case.discover/merge_submitted_reads.sh" $CASE $DIS  >> $OUT
+bash "$CASEDISCOVER_HOME/merge_submitted_reads.sh" $CASE $DIS  >> $OUT
 
 done < $DAT
 }

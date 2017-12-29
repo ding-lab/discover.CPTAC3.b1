@@ -8,7 +8,7 @@ while read CASE; do
 [[ $CASE = \#* ]] && continue  # Skip commented out entries
 >&2 echo Processing $CASE
 
-bash "$QUERYGDC_HOME/case.discover/get_read_groups.sh" $CASE 
+bash "$CASEDISCOVER_HOME/get_read_groups.sh" $CASE 
 
 done < $DAT
 }
