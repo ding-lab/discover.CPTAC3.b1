@@ -1,3 +1,5 @@
+# Cases for batch 2
+
 OUT="dat/CCRC_Cases.dat"
 mkdir -p dat
 
