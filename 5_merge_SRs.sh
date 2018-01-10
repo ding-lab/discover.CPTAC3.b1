@@ -1,4 +1,4 @@
-source CPTAC3.b2.paths.sh
+source discover.paths.sh
 
 OUT="dat/$PROJECT.SR.dat"
 rm -f $OUT

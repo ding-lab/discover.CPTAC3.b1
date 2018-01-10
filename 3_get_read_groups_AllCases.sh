@@ -1,4 +1,4 @@
-source CPTAC3.b2.paths.sh
+source discover.paths.sh
 
 function process_case {
 DAT=$1

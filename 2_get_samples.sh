@@ -1,4 +1,4 @@
-source CPTAC3.b2.paths.sh
+source discover.paths.sh
 
 # TODO: add option to pass -1 for one line only
 # be able to pass other options too

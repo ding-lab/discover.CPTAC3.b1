@@ -1,4 +1,4 @@
-source CPTAC3.b2.paths.sh
+source discover.paths.sh
 
 # TODO: recover /Users/mwyczalk/src/queryGDC/case.discover/get_demographics.sh
 
