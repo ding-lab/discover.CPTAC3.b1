@@ -1,3 +1,5 @@
+# NOTE: these are batch 2 cases; merge back Batch 1 at some point
+
 OUT="dat/CCRC_Cases.dat"
 mkdir -p dat
 
