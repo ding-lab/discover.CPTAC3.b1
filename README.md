@@ -14,6 +14,26 @@ GDC data associated with given cases
 
 These above libraries provide additional documentation and technical background.
 
+# CPTAC3 Batch 2 statistics
+
+See `stats-test/README` for details and analysis.  Summary is for 40 cases in batch 2, without the 3 "straggler cases"
+discussed with Mathangi 1/22/18.
+```
+File type count:
+  80 RNA-Seq    Primary Tumor
+  40 WGS    Blood Derived Normal
+  40 WGS    Primary Tumor
+  40 WXS    Blood Derived Normal
+  40 WXS    Primary Tumor
+```
+
+Disk space requirements:
+
+* Total: 8.151 Tb
+* RNA-Seq: 0.307 Tb
+* WGS: 5.699 Tb
+* WXS: 2.144 Tb
+
 # Installation
 
 All code to obtain data for CPTAC3 Batch 1 cases, including the additional libraries, can be obtained with,
