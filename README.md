@@ -14,6 +14,18 @@ GDC data associated with given cases
 
 These above libraries provide additional documentation and technical background.
 
+## "Straggler" cases
+
+We tried to add three cases which were missing in batch 1 or an earlier review of batch 2.  
+After analyzing the SR summary, we decided to not include the following cases in this
+batch, because they do not have the entire complement of data available (missing WXS and clinical).
+
+* UCEC case C3L-01744 (batch 1)
+* CCRC case C3L-01861 (batch 1)
+* CCRC case C3L-01885 (batch 2)
+
+
+
 # CPTAC3 Batch 2 statistics
 
 See `stats-test/README` for details and analysis.  Summary is for 40 cases in batch 2, without the 3 "straggler cases"
@@ -53,7 +65,10 @@ environment.
 
 All queries require a GDC authorization token, [as described
 here](https://docs.gdc.cancer.gov/Data_Submission_Portal/Users_Guide/Authentication/).
-Download the token and save it to some filename, e.g. `gdc-user-token.txt`.
+
+* Log in to [GDC Data Submission Portal](https://portal.gdc.cancer.gov/submission/CPTAC/3/dashboard)
+* Download token, and save it to some filename, e.g. `gdc-user-token.txt`.
+* Update `GDC_TOKEN` in `discover.paths.sh` accordingly
 
 # Configuration
 
@@ -88,29 +103,59 @@ steps 1-7 must be edited to point to the correct disease files; such edits shoul
 All scripts are run in numerical order.  [CPTAC3.case.discover](https://github.com/ding-lab/CPTAC3.case.discover) has more detailed 
 description of the nature of these scripts.
 
-## Output
+## SR file
 
-The final output is written to the file `dat/my_new_project.SR.dat`.  This file provides a comprehensive summary of submitted reads (aligned and unaligned)
+The principal output is written to the file `dat/my_new_project.SR.dat` (e.g., `dat/CPTAC3.b2.SR.dat`).  This file provides a comprehensive summary of submitted reads (aligned and unaligned)
 with the columns,
 ```
-   case, disease, experimental_strategy, sample_type, samples, filename, filesize, data_format, UUID, md5sum
+   sample_name, case, disease, experimental_strategy, sample_type, samples, filename, filesize, data_format, UUID, md5sum
 ```
 where
 
+* `sample_name` is a unique name generated for convenience
 * `experimental_strategy` is one of WGS, WXS, RNA-Seq
 * `sample_type` is one of "Primary Tumor", "Blood Derived Normal"
 * `samples` is `;`-separated list of all sample names associated with this SR
 * `data_format` is either BAM for FASTQ
 
-Example output for one case, `C3L-00006`:
+Example output for one case, `C3L-00004`:
 
 ```
-C3L-00006   UCEC    WGS Blood Derived Normal    C3L-00006-31    CPT0000120163.WholeGenome.RP-1303.bam   151985198519    BAM 14c0cb14-71e4-4f26-89f1-349ce26f0bf9    fe6d49f2c01725954df1fe15016c214a
-C3L-00006   UCEC    RNA-Seq Primary Tumor   C3L-00006-01    170802_UNC31-K00269_0072_AHK3GVBBXX_TAGCTT_S17_L005_R1_001.fastq.gz 3875867464  FASTQ   8a1efc47-1c29-417f-a425-cdbd09565dcb    220251611f5168663d5273deffa65203
-C3L-00006   UCEC    RNA-Seq Primary Tumor   C3L-00006-01    170802_UNC31-K00269_0072_AHK3GVBBXX_TAGCTT_S17_L005_R2_001.fastq.gz 4295485553  FASTQ   8c3fe9b7-7acd-4867-8d9c-a8e5d1516eda    e651d3e28763687d67f1427d288681d1
-C3L-00006   UCEC    WXS Primary Tumor   C3L-00006-01    CPT0001460007.WholeExome.RP-1303.bam    33843236954 BAM b821093d-2551-4327-96d5-07bc91c6d8aa    2ff4d23084057ef0a6aadedaf00e9bea
-C3L-00006   UCEC    WXS Blood Derived Normal    C3L-00006-31    CPT0000120163.WholeExome.RP-1303.bam    34319355475 BAM cc3a2843-4c09-4270-a0be-62a0dfccce7f    6db1db1d9fa6cf47b9f89d86a2877015
-C3L-00006   UCEC    WGS Primary Tumor   C3L-00006-01    CPT0001460007.WholeGenome.RP-1303.bam   172574887163    BAM d7d6b810-7183-4cd3-8847-8794ec578fb9    8afb6a100ad07d5d8f6a53e13d16a919
+# sample_name   case    disease experimental_strategy   sample_type samples filename    filesize    data_format UUID    MD5
+C3L-00004.RNA-Seq.R1.T  C3L-00004   CCRC    RNA-Seq Primary Tumor   C3L-00004-01    170802_UNC31-K00269_0072_AHK3GVBBXX_GATCAG_S14_L004_R1_001.fastq.gz 3583768830  FASTQ   287dfdf2-9db1-4216-bffb-1b0a91d91a18    938ee1cce13b5fb162d745e2728b4a76
+C3L-00004.WGS.N C3L-00004   CCRC    WGS Blood Derived Normal    C3L-00004-31    CPT0000140163.WholeGenome.RP-1303.bam   137026519152    BAM 59f284e7-cffa-4891-a76c-60dd8e46a01d    c4f2f69bffed177e9412ba8559a37ecf
+C3L-00004.RNA-Seq.R1.N  C3L-00004   CCRC    RNA-Seq Solid Tissue Normal C3L-00004-06    171208_UNC32-K00270_0071_BHN7K5BBXX_GAGTGG_S57_L008_R1_001.fastq.gz 3956827023  FASTQ   804bc1fd-f191-4415-985f-7572e367ccbb    b645b63047f98ea399ccc89e945ffdb4
+C3L-00004.RNA-Seq.R2.T  C3L-00004   CCRC    RNA-Seq Primary Tumor   C3L-00004-01    170802_UNC31-K00269_0072_AHK3GVBBXX_GATCAG_S14_L004_R2_001.fastq.gz 4011873670  FASTQ   b9e72d51-f52d-43b0-99fa-25c184f27a92    82f5aca80e5debf65d53c3ff985cfa2b
+C3L-00004.WXS.T C3L-00004   CCRC    WXS Primary Tumor   C3L-00004-01    CPT0001540165.WholeExome.RP-1303.bam    39445446486 BAM baaf9523-3d3c-4c8a-979c-af8b86a1bc6d    98014f0fd20d3fffe8d13d46a275c4e9
+C3L-00004.WGS.T C3L-00004   CCRC    WGS Primary Tumor   C3L-00004-01    CPT0001540165.WholeGenome.RP-1303.bam   146090178289    BAM c336c120-966a-4ec0-9fc7-6d5c856bbc22    12e1fcaf3dd836872c2f665d08b37423
+C3L-00004.WXS.N C3L-00004   CCRC    WXS Blood Derived Normal    C3L-00004-31    CPT0000140163.WholeExome.RP-1303.bam    29198662220 BAM e933d585-96d2-4ab6-89b1-2b542d07fa9e    4501fc3aeaa7c9b7533dcf9d8c9970ec
+C3L-00004.RNA-Seq.R2.N  C3L-00004   CCRC    RNA-Seq Solid Tissue Normal C3L-00004-06    171208_UNC32-K00270_0071_BHN7K5BBXX_GAGTGG_S57_L008_R2_001.fastq.gz 4122366105  FASTQ   eb0369b6-5af2-4066-a2b3-41f4d4a93719    4c3078869f5081425ce645dc23dcaeea
+```
+
+## Demographics
+
+The following clinical information is recoreded in the file `dat/CPTAC3.b2.Demographics.dat` for each case:
+
+* `ethnicity`
+* `gender`
+* `race`
+* `days_to_birth`
+
+## SR Summary
+
+
+
+
+## Exon target capture info
+
+The intermediate files `read_group_from_case` capture the `target_capture_kit_target_region` field of each read group, which is used for exome analysis.  Currently the
+only value observed (apart from null and N/A) is 
+```
+http://support.illumina.com/content/dam/illumina-support/documents/documentation/chemistry_documentation/samplepreps_nextera/nexterarapidcapture/nexterarapidcapture_exome_targetedregions_v1.2.bed
+```
+This can be evaluated with,
+```
+cat dat/*/read_group_from_case.*.dat  | cut -f 5 | sort -u
 ```
 
 ## Support 

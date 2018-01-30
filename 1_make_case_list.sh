@@ -1,11 +1,15 @@
 # Cases for batch 2
 
-OUT="dat/CCRC_Cases.dat"
+# We will have one unified file with all cases, sorted.
+
+OUT="dat/all_cases.dat"
+
+TMPOUT1="dat/CCRC_Cases.tmp"
 mkdir -p dat
 
 # Batch2-CCRCC_TMT_Sets6-9.xlsx 
 # https://drive.google.com/open?id=16oZEYoVizqktVgXWwsGU7ffn3CQeoKOk
-cat <<EOF | sort -u > $OUT
+cat <<EOF | sed 's/$/\tCCRC/' | sort -u > $TMPOUT1
 C3L-00097
 C3L-00004
 C3N-00953
@@ -24,9 +28,7 @@ C3L-00583
 C3L-00088
 C3L-00814
 C3L-00908
-C3L-01885
 C3L-00814
-C3L-01885
 C3L-00026
 C3L-00908
 C3L-00026
@@ -39,13 +41,12 @@ C3N-00148
 C3N-00246
 C3L-00416
 EOF
-echo Written to $OUT
 
-OUT="dat/UCEC_Cases.dat"
 
+TMPOUT2="dat/UCEC_Cases.tmp"
 # UCEC_TMT10_Batch2_SampleAndAliquotIDs.xlsx 
 # https://drive.google.com/open?id=1fa_nBJYCi-IjLxr6hY8p7nRpOuMrOBIK
-cat << EOF | sort -u > $OUT 
+cat << EOF | sed 's/$/\tUCEC/' | sort -u > $TMPOUT2
 C3N-00333
 C3N-00333
 C3L-00006
@@ -83,4 +84,7 @@ C3N-00335
 C3N-00326
 C3L-00961
 EOF
+
+cat $TMPOUT1 $TMPOUT2 | sort > $OUT
+rm $TMPOUT1 $TMPOUT2
 echo Written to $OUT
