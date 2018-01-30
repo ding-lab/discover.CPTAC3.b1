@@ -1,0 +1,41 @@
+# case	disease	ethnicity	gender	race	days_to_birth
+C3L-00004	CCRC	not hispanic or latino	male	white	26409
+C3L-00006	UCEC	not hispanic or latino	female	white	23700
+C3L-00026	CCRC	not hispanic or latino	female	white	23881
+C3L-00088	CCRC	not hispanic or latino	male	white	26509
+C3L-00097	CCRC	not hispanic or latino	male	white	21624
+C3L-00362	UCEC	not hispanic or latino	female	white	14058
+C3L-00416	CCRC	not hispanic or latino	male	white	22653
+C3L-00447	CCRC	not hispanic or latino	male	white	12822
+C3L-00449	UCEC	not hispanic or latino	female	white	21705
+C3L-00583	CCRC	hispanic or latino	male	white	20237
+C3L-00586	UCEC	not hispanic or latino	female	white	18580
+C3L-00601	UCEC	not hispanic or latino	female	white	20899
+C3L-00769	UCEC	not reported	female	white	20660
+C3L-00780	UCEC	hispanic or latino	female	white	21634
+C3L-00814	CCRC	not reported	male	not reported	30635
+C3L-00908	CCRC	not hispanic or latino	female	white	22179
+C3L-00918	UCEC	not hispanic or latino	female	white	25195
+C3L-00930	UCEC	not hispanic or latino	female	white	26559
+C3L-00932	UCEC	not hispanic or latino	female	white	24510
+C3L-00961	UCEC	not reported	female	white	21764
+C3L-00963	UCEC	not reported	female	white	21815
+C3L-01246	UCEC	not reported	female	white	22948
+C3L-01257	UCEC	not reported	female	white	26274
+C3L-01312	UCEC	not hispanic or latino	female	white	20729
+C3N-00148	CCRC	not reported	male	not reported	19314
+C3N-00150	CCRC	not reported	female	not reported	20286
+C3N-00244	CCRC	not hispanic or latino	male	white	16873
+C3N-00246	CCRC	not hispanic or latino	male	white	16268
+C3N-00323	UCEC	not reported	female	not reported	28627
+C3N-00326	UCEC	not reported	female	not reported	16460
+C3N-00333	UCEC	not reported	female	not reported	23940
+C3N-00335	UCEC	not reported	female	not reported	21084
+C3N-00339	UCEC	not reported	female	not reported	16554
+C3N-00729	UCEC	not hispanic or latino	female	white	31527
+C3N-00836	UCEC	not reported	female	not reported	27509
+C3N-00866	UCEC	not hispanic or latino	female	white	null
+C3N-00953	CCRC	not hispanic or latino	male	asian	15137
+C3N-01178	CCRC	not reported	female	not reported	21476
+C3N-01212	UCEC	not reported	female	not reported	23206
+C3N-01217	UCEC	not reported	female	not reported	21296
