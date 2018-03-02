@@ -2,6 +2,8 @@
 
 # We will have one unified file with all cases, sorted.
 
+# For next round, change this to something like, "dat/CPTAC3.b2.all_cases.dat" 
+# to make sharing of this file easier
 OUT="dat/all_cases.dat"
 
 TMPOUT1="dat/CCRC_Cases.tmp"
