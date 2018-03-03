@@ -1,5 +1,7 @@
 Discover and analyze submitted reads for all samples for CPTAC3 batch 1.
 
+NOTE: Warning: dat/C3N-01178/sample_from_case.C3N-01178.dat is empty
+
 # Overview
 
 The [discover.CPTAC3.b1](https://github.com/ding-lab/discover.CPTAC3.b1) project obtains information about 

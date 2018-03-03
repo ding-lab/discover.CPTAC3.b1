@@ -1,6 +1,6 @@
 source discover.paths.sh
 
-DAT="dat/all_cases.dat"
+DAT="dat/CPTAC3.b1-2.cases.dat"
 
 
 function process_case {
