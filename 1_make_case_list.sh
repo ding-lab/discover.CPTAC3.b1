@@ -2,7 +2,7 @@
 
 # We will have one unified file with all cases, sorted.
 
-OUT="dat/CPTAC3.b3.all_cases.dat"
+OUT="dat/CPTAC3.b3.cases.dat"
 
 TMPOUT1="dat/CCRC_Cases.tmp"
 mkdir -p dat
