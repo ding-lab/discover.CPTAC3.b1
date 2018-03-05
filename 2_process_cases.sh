@@ -6,6 +6,11 @@ DAT="dat/CPTAC3.b1-2.cases.dat"
 function process_case {
 CASE=$1
 DIS=$2
+
+if [ -z $CASE ]; then
+return
+fi
+
 >&2 echo Processing $CASE \($DIS\)
 
 bash $CASEDISCOVER_HOME/get_sample.sh $CASE 
