@@ -1,6 +1,90 @@
-Discover and analyze submitted reads for all samples for CPTAC3 batch 1.
+Discover and analyze submitted reads for all samples for CPTAC3 batch 3 + straggle cases.
 
-# Overview
+*TODO* split common documentation about software from particular batch information
+
+# Project overview
+
+CPTAC3 Batch 3 cases
+
+*note* the following cases do not have demographics information associated with them:
+```
+C3L-01744   UCEC
+C3L-01861   CCRC
+C3L-01885   CCRC
+C3N-01649   CCRC
+C3N-01808   CCRC
+C3N-01825   UCEC
+```
+
+## CCRC
+From [180110_CCRCC-TMT_Sets1-23.xlsx](https://drive.google.com/file/d/1o00p5tiREZWx6HGHIAAmKWb0i6Y4XuVA/view)
+```
+C3L-00011
+C3L-00103
+C3L-00360
+C3L-00581
+C3L-00817
+C3L-01302
+C3L-01313
+C3N-00149
+C3N-00177
+C3N-00573
+C3N-01175
+C3N-01176
+C3N-01200
+C3N-01361
+C3N-01649
+C3N-01651
+C3N-01808
+```
+
+## UCEC
+From [UCEC_TMT_02092018_batches 3&4.xlsx](https://drive.google.com/file/d/1ZsCL-k6og3CYw7SdTAohAVraITFUIxh_/view)
+```
+C3L-00084
+C3L-00090
+C3L-00139
+C3L-00145
+C3L-00356
+C3L-00563
+C3L-00605
+C3L-00767
+C3L-00770
+C3L-00771
+C3L-00905
+C3L-01247
+C3L-01253
+C3L-01275
+C3L-01284
+C3N-00200
+C3N-00321
+C3N-00324
+C3N-00328
+C3N-00340
+C3N-00379
+C3N-00386
+C3N-00743
+C3N-00880
+C3N-01003
+C3N-01211
+C3N-01219
+C3N-01267
+C3N-01520
+C3N-01825
+```
+
+## "Straggler" cases
+
+We tried to add three cases which were missing in batch 1 or an earlier review of batch 2.  
+After analyzing the SR summary, we decided to not include the following cases in this
+batch, because they do not have the entire complement of data available (missing WXS and clinical).
+
+* CCRC case C3L-01861 (batch 1)
+* CCRC case C3L-01885 (batch 2)
+* UCEC case C3L-01744 (batch 1)
+
+
+# Project overview
 
 The [discover.CPTAC3.b1](https://github.com/ding-lab/discover.CPTAC3.b1) project obtains information about 
 BAM and FASTQ files associated with a given set of cases from the GDC. It is specific to a specific batch of CPTAC3 cases, but
@@ -14,37 +98,6 @@ GDC data associated with given cases
 
 These above libraries provide additional documentation and technical background.
 
-## "Straggler" cases
-
-We tried to add three cases which were missing in batch 1 or an earlier review of batch 2.  
-After analyzing the SR summary, we decided to not include the following cases in this
-batch, because they do not have the entire complement of data available (missing WXS and clinical).
-
-* UCEC case C3L-01744 (batch 1)
-* CCRC case C3L-01861 (batch 1)
-* CCRC case C3L-01885 (batch 2)
-
-
-
-# CPTAC3 Batch 2 statistics
-
-See `stats-test/README` for details and analysis.  Summary is for 40 cases in batch 2, without the 3 "straggler cases"
-discussed with Mathangi 1/22/18.
-```
-File type count:
-  80 RNA-Seq    Primary Tumor
-  40 WGS    Blood Derived Normal
-  40 WGS    Primary Tumor
-  40 WXS    Blood Derived Normal
-  40 WXS    Primary Tumor
-```
-
-Disk space requirements:
-
-* Total: 8.151 Tb
-* RNA-Seq: 0.307 Tb
-* WGS: 5.699 Tb
-* WXS: 2.144 Tb
 
 # Installation
 
@@ -140,11 +193,6 @@ The following clinical information is recoreded in the file `dat/CPTAC3.b2.Demog
 * `gender`
 * `race`
 * `days_to_birth`
-
-## SR Summary
-
-
-
 
 ## Exon target capture info
 

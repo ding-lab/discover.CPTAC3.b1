@@ -1,13 +1,18 @@
 # Cases for batch 3
 
-# We will have one unified file with all cases, sorted.
+# Adding the following 3 cases ("Stragglers")
+# * UCEC case C3L-01744 (batch 1)
+# * CCRC case C3L-01861 (batch 1)
+# * CCRC case C3L-01885 (batch 2)
 
 OUT="dat/CPTAC3.b3.cases.dat"
 
 TMPOUT1="dat/CCRC_Cases.tmp"
 mkdir -p dat
 # CCRC Batch 3 from 
-cat <<EOF | sed 's/$/\tCCRC/' | sort -u > $TMPOUT1
+
+# Remove comments and blank lines with SED
+cat <<EOF | sed '/^[[:blank:]]*#/d;s/#.*//' | sed 's/$/\tCCRC/' | sort -u > $TMPOUT1
 C3N-01175
 C3L-00011
 C3N-00177
@@ -41,12 +46,13 @@ C3N-01651
 C3N-01651
 C3L-00360
 C3L-01302
+C3L-01861 # batch 1 straggler
+C3L-01885 # batch 2 straggler
 EOF
-
 
 TMPOUT2="dat/UCEC_Cases.tmp"
 # UCEC  Batch 3. https://docs.google.com/spreadsheets/d/1UEhcvZ1rJrG8HTZeKd1nGBV-vKtW4UNNY6vvnBiY1o8/edit#gid=1440437076
-cat << EOF | sed 's/$/\tUCEC/' | sort -u > $TMPOUT2
+cat << EOF | sed '/^[[:blank:]]*#/d;s/#.*//' | sed 's/$/\tUCEC/' | sort -u > $TMPOUT2
 C3L-00770
 C3L-00770
 C3N-00200
@@ -83,6 +89,7 @@ C3L-00090
 C3N-00880
 C3N-00328
 C3L-00767
+C3L-01744 # Batch 1 straggler
 EOF
 
 cat $TMPOUT1 $TMPOUT2 | sort > $OUT
