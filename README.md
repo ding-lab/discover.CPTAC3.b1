@@ -1,6 +1,18 @@
-Discover and analyze submitted reads for all samples for CPTAC3 batch 1.
+Discover and analyze submitted reads for all samples for CPTAC3 batch 1 and 2, with an emphasis on 
+locating Adjacent Normal.
 
 NOTE: Warning: dat/C3N-01178/sample_from_case.C3N-01178.dat is empty
+
+#Nomenclature:
+
+Blood Derived Normal = N  (this is the principal normal used in batches 1,2)
+Primary Tumor        = T    
+Solid Tissue Normal  = A  (this is a new code, A for Adjacent Normal)
+
+
+
+
+
 
 # Overview
 
