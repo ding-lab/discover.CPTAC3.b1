@@ -1,17 +1,21 @@
 # Cases for batches 1 and 2
 # Will focus here on adjacent normal, but basically redoing entire search
 
-# We will have one unified file with all cases, sorted.
+# Adding the following 3 cases ("Stragglers")
+# * UCEC case C3L-01744 (batch 1)
+# * CCRC case C3L-01861 (batch 1)
+# * CCRC case C3L-01885 (batch 2)
 
-OUT="dat/CPTAC3.b1-2.cases.dat"
+OUT="dat/$PROJECT.cases.dat"
 
 TMPOUT1="dat/CCRC_Cases.tmp"
 mkdir -p dat
 
-# Batch2-CCRCC_TMT_Sets6-9.xlsx 
+
 # https://drive.google.com/open?id=16oZEYoVizqktVgXWwsGU7ffn3CQeoKOk
 # first sed incantation removes comments and blank lines, courtesy https://stackoverflow.com/questions/3350223/sed-remove-and-empty-lines-with-one-sed-command
-cat <<EOF | sed -e '/\s*#.*$/d' -e '/^\s*$/d' | sed 's/$/\tCCRC/' | sort -u > $TMPOUT1
+# Remove comments and blank lines with SED
+cat <<EOF | sed '/^[[:blank:]]*#/d;s/#.*//' | sed 's/$/\tCCRC/' | sort -u > $TMPOUT1
 # Batch 1
 C3L-00561
 C3L-01287
@@ -66,13 +70,14 @@ C3N-00148
 C3N-00148
 C3N-00246
 C3L-00416
+# Straggler Batch 1
+C3L-01861
+# Straggler Batch 2
+C3L-01885
 EOF
 
-
 TMPOUT2="dat/UCEC_Cases.tmp"
-# UCEC_TMT10_Batch2_SampleAndAliquotIDs.xlsx 
-# https://drive.google.com/open?id=1fa_nBJYCi-IjLxr6hY8p7nRpOuMrOBIK
-cat << EOF | sed -e '/\s*#.*$/d' -e '/^\s*$/d' | sed 's/$/\tUCEC/' | sort -u > $TMPOUT2
+cat << EOF | sed '/^[[:blank:]]*#/d;s/#.*//' | sed 's/$/\tUCEC/' | sort -u > $TMPOUT2
 # Batch 1
 C3N-00858
 C3L-01252
@@ -134,6 +139,8 @@ C3L-00963
 C3N-00335
 C3N-00326
 C3L-00961
+# Straggler: batch 1
+C3L-01744
 EOF
 
 cat $TMPOUT1 $TMPOUT2 | sort > $OUT

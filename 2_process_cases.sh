@@ -1,7 +1,6 @@
 source discover.paths.sh
 
-DAT="dat/CPTAC3.b1-2.cases.dat"
-
+DAT="dat/$PROJECT.cases.dat"
 
 function process_case {
 CASE=$1

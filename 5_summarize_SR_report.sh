@@ -1,6 +1,11 @@
 source discover.paths.sh
 
-DAT="dat/CPTAC3.b1-2.cases.dat"
+# Sample types:
+# Primary Tumor = T
+# Blood Derived Normal = B
+# Solid Tissue Normal = S
+
+DAT="dat/$PROJECT.cases.dat"
 OUT="dat/$PROJECT.file-summary.dat"
 rm -f $OUT
 bash $CASEDISCOVER_HOME/summarize_cases.sh $DAT $OUT
