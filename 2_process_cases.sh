@@ -2,6 +2,9 @@ source discover.paths.sh
 
 DAT="dat/$PROJECT.cases.dat"
 
+# Note that since this takes some time to process, can run it in background as,
+# nohup bash 2_process_cases.sh &> 2.out &
+
 function process_case {
 CASE=$1
 DIS=$2
