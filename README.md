@@ -1,96 +1,38 @@
-Discover and analyze submitted reads for all samples for CPTAC3 batch 1 and 2, with an emphasis on 
-locating Adjacent Normal.
 
+Obtain information about MT552 batch 
+
+https://drive.google.com/open?id=1JCnC3-My7tGvDDnEqBFhav4J4lS49L1U
+
+
+
+# -----------------
 #Nomenclature:
 
 Blood Derived Normal = N  (this is the principal normal used in batches 1,2)
 Primary Tumor        = T    
 Solid Tissue Normal  = A  (this is a new code, A for Adjacent Normal)
+Primary Blood Derived Cancer - Bone Marrow = M
 
 Discover and analyze submitted reads for all samples for CPTAC3 batch 3 + straggle cases.
 
-*TODO* split common documentation about software from particular batch information
-
-# Project overview
-
-CPTAC3 Batch 3 cases
-
-*note* the following cases do not have demographics information associated with them:
+##Errors with some AML cases
 ```
-C3L-01744   UCEC
-C3L-01861   CCRC
-C3L-01885   CCRC
-C3N-01649   CCRC
-C3N-01808   CCRC
-C3N-01825   UCEC
-```
-
-## CCRC
-From [180110_CCRCC-TMT_Sets1-23.xlsx](https://drive.google.com/file/d/1o00p5tiREZWx6HGHIAAmKWb0i6Y4XuVA/view)
-```
-C3L-00011
-C3L-00103
-C3L-00360
-C3L-00581
-C3L-00817
-C3L-01302
-C3L-01313
-C3N-00149
-C3N-00177
-C3N-00573
-C3N-01175
-C3N-01176
-C3N-01200
-C3N-01361
-C3N-01649
-C3N-01651
-C3N-01808
+    ERROR: Multiple sample types for Case C3L-00453 ID a478cec3-9529-46f2-acaa-c99ad73fa1fb ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00453 ID d58d2353-a50e-4e4f-8635-bc82cabcfd67 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00457 ID 6ffd72f5-aa4a-44c0-a313-d0aa83e41f7a ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00457 ID a0f47869-5aa2-4da5-9de2-acab2d008fc8 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00459 ID 43e5938e-8ee3-4f7c-96fe-ffdd50c387b6 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00459 ID 6536db8c-f6e6-480b-817e-4407282925a0 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00461 ID 36c2788d-a5c2-49fb-a0d4-2f16d55df5a5 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00461 ID 574c9ffc-0c42-45f6-98b9-0f7555d0eba9 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-01291 ID 5a6b11d5-bf6f-4299-a58c-46f34444fe54 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-01291 ID c8a6968d-e486-4975-af04-ad36908e6c94 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-01296 ID 7c88daf5-a0f5-4016-bc0b-8a6ca67a6477 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-01296 ID ec32edcd-460e-45e1-8f04-a73377524120 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
 ```
 
-## UCEC
-From [UCEC_TMT_02092018_batches 3&4.xlsx](https://drive.google.com/file/d/1ZsCL-k6og3CYw7SdTAohAVraITFUIxh_/view)
-```
-C3L-00084
-C3L-00090
-C3L-00139
-C3L-00145
-C3L-00356
-C3L-00563
-C3L-00605
-C3L-00767
-C3L-00770
-C3L-00771
-C3L-00905
-C3L-01247
-C3L-01253
-C3L-01275
-C3L-01284
-C3N-00200
-C3N-00321
-C3N-00324
-C3N-00328
-C3N-00340
-C3N-00379
-C3N-00386
-C3N-00743
-C3N-00880
-C3N-01003
-C3N-01211
-C3N-01219
-C3N-01267
-C3N-01520
-C3N-01825
-```
 
-## "Straggler" cases
 
-We tried to add three cases which were missing in batch 1 or an earlier review of batch 2.  
-After analyzing the SR summary, we decided to not include the following cases in this
-batch, because they do not have the entire complement of data available (missing WXS and clinical).
-
-* CCRC case C3L-01861 (batch 1)
-* CCRC case C3L-01885 (batch 2)
-* UCEC case C3L-01744 (batch 1)
 
 
 # Project overview
