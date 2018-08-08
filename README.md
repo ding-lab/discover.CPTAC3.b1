@@ -122,6 +122,10 @@ This can be evaluated with,
 cat dat/*/read_group_from_case.*.dat  | cut -f 5 | sort -u
 ```
 
-## Support 
+## Filesize
+
+Cumulative size of all SR files can be calculated with `6_get_filesizes.sh`
+
+# Support 
 
 Please contact Matt Wyczalkowski <m.wyczalkowski@wustl.edu> for with questions and bug reports.
