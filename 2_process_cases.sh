@@ -1,6 +1,6 @@
 source discover.paths.sh
 
-DAT="dat/$PROJECT.cases.dat"
+echo Iterating over $DISCOVER_CASES
 
 # Note that since this takes some time to process, can run it in background as,
 # nohup bash 2_process_cases.sh &> 2.out &
@@ -15,9 +15,12 @@ fi
 
 >&2 echo Processing $CASE \($DIS\)
 
-bash $CASEDISCOVER_HOME/get_sample.sh $CASE 
-bash $CASEDISCOVER_HOME/get_read_groups.sh $CASE 
-bash $CASEDISCOVER_HOME/get_submitted_reads.sh $CASE 
+bash CPTAC3.case.discover/get_sample.sh $CASE 
+test_exit_status
+bash CPTAC3.case.discover/get_read_groups.sh $CASE 
+test_exit_status
+bash CPTAC3.case.discover/get_submitted_reads.sh $CASE 
+test_exit_status
 
 }
 
@@ -32,7 +35,6 @@ DIS=$(echo "$L" | cut -f 2 )
 
 process_case $CASE $DIS
 
-
-done < $DAT
+done < $DISCOVER_CASES
 
 
