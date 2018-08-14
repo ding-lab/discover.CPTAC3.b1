@@ -1,12 +1,9 @@
 # Define project paths and environment variables
 
-export PROJECT="CPTAC3.C325"
+export PROJECT="CPTAC3.hg38.b1"
+export GDC_TOKEN="/home/mwyczalk_test/Projects/CPTAC3/discover/token/gdc-user-token.2018-07-27T17_05_21.667Z.txt"
 
-# use absolute path
-export GDC_TOKEN="/home/mwyczalk_test/Projects/CPTAC3/Discover/token/gdc-user-token.2018-06-30T19_43_41.286Z.txt"
-
-export CASEDISCOVER_HOME="CPTAC3.case.discover"
-export QUERYGDC_HOME="$CASEDISCOVER_HOME/queryGDC"
+export QUERYGDC_HOME="CPTAC3.case.discover/queryGDC"
 
 export DISCOVER_CASES="dat/$PROJECT.cases.dat"
 

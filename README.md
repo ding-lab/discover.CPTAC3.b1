@@ -101,6 +101,14 @@ C3L-00004.WXS.N C3L-00004   CCRC    WXS Blood Derived Normal    C3L-00004-31    
 C3L-00004.RNA-Seq.R2.N  C3L-00004   CCRC    RNA-Seq Solid Tissue Normal C3L-00004-06    171208_UNC32-K00270_0071_BHN7K5BBXX_GAGTGG_S57_L008_R2_001.fastq.gz 4122366105  FASTQ   eb0369b6-5af2-4066-a2b3-41f4d4a93719    4c3078869f5081425ce645dc23dcaeea
 ```
 
+## Nomenclature:
+
+Blood Derived Normal = N  (this is the principal normal used in batches 1,2)
+Primary Tumor        = T    
+Solid Tissue Normal  = A  (A for Adjacent Normal)
+Primary Blood Derived Cancer - Bone Marrow = M
+
+
 ## Demographics
 
 The following clinical information is recoreded in the file `dat/CPTAC3.b2.Demographics.dat` for each case:
@@ -125,6 +133,36 @@ cat dat/*/read_group_from_case.*.dat  | cut -f 5 | sort -u
 ## Filesize
 
 Cumulative size of all SR files can be calculated with `6_get_filesizes.sh`
+
+# Errors and TODO:
+
+## Transient errors
+On occasion, we see the following error:
+```
+result="<html><head><title>Hold up there!</title></head><body><center><h1>Hold up there!</h1><p>You are posting too quickly. Wait for few moments and try again.</p></body></html>"
+```
+
+A test for this response was implemented in queryGDC, and results in waiting 5 seconds before trying again
+
+## AML issues
+
+Ran into errors associated with AML cases from the [MT552 batch](https://drive.google.com/open?id=1JCnC3-My7tGvDDnEqBFhav4J4lS49L1U)
+(list of 552 cases provided by Mathangi May 2018).  Output observed:
+
+```
+    ERROR: Multiple sample types for Case C3L-00453 ID a478cec3-9529-46f2-acaa-c99ad73fa1fb ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00453 ID d58d2353-a50e-4e4f-8635-bc82cabcfd67 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00457 ID 6ffd72f5-aa4a-44c0-a313-d0aa83e41f7a ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00457 ID a0f47869-5aa2-4da5-9de2-acab2d008fc8 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00459 ID 43e5938e-8ee3-4f7c-96fe-ffdd50c387b6 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00459 ID 6536db8c-f6e6-480b-817e-4407282925a0 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00461 ID 36c2788d-a5c2-49fb-a0d4-2f16d55df5a5 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-00461 ID 574c9ffc-0c42-45f6-98b9-0f7555d0eba9 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-01291 ID 5a6b11d5-bf6f-4299-a58c-46f34444fe54 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-01291 ID c8a6968d-e486-4975-af04-ad36908e6c94 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-01296 ID 7c88daf5-a0f5-4016-bc0b-8a6ca67a6477 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+    ERROR: Multiple sample types for Case C3L-01296 ID ec32edcd-460e-45e1-8f04-a73377524120 ( Primary Blood Derived Cancer - Bone Marrow and Buccal Cell Normal )
+```
 
 # Support 
 

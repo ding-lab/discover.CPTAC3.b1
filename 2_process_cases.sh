@@ -36,5 +36,3 @@ DIS=$(echo "$L" | cut -f 2 )
 process_case $CASE $DIS
 
 done < $DISCOVER_CASES
-
-

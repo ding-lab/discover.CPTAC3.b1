@@ -1,37 +1,51 @@
-# CPTAC3 Complete analysis
+# Testing discovery of GDC Harmonized (hg38) data
 
-The goal here is to obtain an SR file consisting of all CPTAC3 CCRC, LUAD, and UCEC batches (through July 2018).
-`epazote:/Users/mwyczalk/Projects/CPTAC3/CPTAC3.Cases/dat/CPTAC3.Complete.cases.dat`
-renamed as here as `dat/CPTAC3.C322.cases.dat` has columns: (case name, disease, batch number) 
-
-Case names are collected in the directory above from these sources:
-* LUAD: `origdata/20180403_CPTAC3_Broad_LUAD_Batch_Plan.xlsx`
-  * From email from Michael Gillette 4/5/18
-* UCEC 3-4: `origdata/UCEC_TMT_02092018_batches 3&4.xlsx`
-  * From email from Emily Boja 2/14/18
-* UCEC 2: `origdata/UCEC_TMT10_Batch2_SampleAndAliquotIDs.xls`
-  * from email from Tao Liu 12/14/18
-* UCEC 1: `origdata/Updated\ UCEC_TMT10_Batch\ 1_PNNL_UUID_added.xlsx`
-  * from Mathangi Thiagarajan email 10/5/18
-* CRCC 1-5: `origdata/180110_CCRCC-TMT_Sets1-23.xlsx`
-  * from email from Emily Boja 2/14/18
-  * Note that this is a summary dataset, is not what was used for discover
-    at that time.  Assuming it is consistent
-* Dan Cui requested (email, 7/2/18) the following three UCEC cases be added; we are calling this the d3 batch, and
-  the dataset with them included is the C325 dataset
-  * C3L-01925, C3N-01346, C3N-01349
-
-## d3 batch
-  * Preliminary analysis (7/8/18 and prior) has no WXS samples associated with the d3 cases above
-  * These datasets were uploaded and an SR file containing them was generated 
-  * Old version of SR file is labeled "v1.0" 
-
-# Transient errors
-
-On occasion, we see the following error:
+File CPTAC-3_AlignedReads_GDC-Manifest.txt from Mathangi email 7/17/18
 ```
-result="<html><head><title>Hold up there!</title></head><body><center><h1>Hold up there!</h1><p>You are posting too quickly. Wait for few moments and try again.</p></body></html>"
+        GDC harmonized whole exome data (batch 1) are available for your review.
+        Please find attached the manifest file with basic metadata.
+        Please start reviewing the harmonized bams.
+        Anyone with dbGaP submitter access for CPTAC-3 should currently be able to
+        download any of these files either by using the GDC Data Transfer Tool or the
+        API directly. Please check
+        https://docs.gdc.cancer.gov/Data_Submission_Portal/Users_Guide/Pre_Release_QC/
+        for additional documentation.  If you have any question about the content,
+        please contact me. If you have questions or technical issues with the actual
+        connection or downloading, please contact GDC helpdesk
+        (support@nci-gdc.datacommons.io). I will let you know as soon as the variant
+        calls are ready which should be very soon.
 ```
 
-A test for this response was implemented in queryGDC, and results in waiting 5 seconds before trying again
 
+
+Total required disk space 27.1442 Tb based on direct parsing of this file
+
+Preliminary testing for UCEC case C3L-00938
+
+
+Alliquot ID CPT0016260006 (sample ID 94e9963b-ecb8-490c-854c-2043f19224f1) has IS_TUMOR=Y
+Alliquot ID CPT0016330002 (sample ID 98c830a5-8735-4f5f-812d-3e7f7c3aa514) has IS_TUMOR=N
+
+## GDC Discovery
+details from Katmai: /home/mwyczalk_test/Projects/CPTAC3/import/import.CPTAC3.hg38.b1
+
+cases obtained from above, > CPTAC-3_AlignedReads_GDC-Manifest.cases.txt
+
+### obtaining aligned_reads
+
+Aligned_reads have a link to submitted_aligned_reads they are associated with.  Can recover this information using, e.g.,
+```
+{
+ aligned_reads(with_path_to: {type: "submitted_aligned_reads", id: "8f7864c6-eaaa-48b7-8aac-3c5d2dbe3ccb"}) {
+    experimental_strategy
+    data_category
+    data_format
+    id
+    file_name
+    file_size
+    md5sum
+  }
+}
+```
+
+Test dataset dat/CPTAC3.C325.SR.dat downloaded from denali:/home/mwyczalk_test/Projects/CPTAC3/Discover/discover.CPTAC3.C322/dat/CPTAC3.C325.SR.dat
