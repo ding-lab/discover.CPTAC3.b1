@@ -1,6 +1,14 @@
 source discover.paths.sh
 
+# Implemeting short-circuiting - do not query results which have already been done before in the project below
+OLDRUN="/home/mwyczalk_test/Projects/CPTAC3/discover/discover.CPTAC3.harmonized"
+if [ ! -d $OLDRUN ]; then
+    >&2 echo Old Run $OLDRUN does not exist
+    exit 1
+fi
+
 echo Iterating over $DISCOVER_CASES
+echo Comparing with past run $OLDRUN
 
 # Note that since this takes some time to process, can run it in background as,
 # nohup bash 2_process_cases.sh &> 2.out &
@@ -16,10 +24,41 @@ fi
 >&2 echo Processing $CASE \($DIS\)
 
 bash CPTAC3.case.discover/get_sample.sh $CASE 
+# Writes dat/$CASE/sample_from_case.$CASE.dat
 test_exit_status
+
 bash CPTAC3.case.discover/get_read_groups.sh $CASE 
+# Writes dat/$CASE/read_group_from_case.$CASE.dat
 test_exit_status
-bash CPTAC3.case.discover/get_submitted_reads.sh $CASE 
+
+# Evaluate old vs. new to see if can short-circuit the get_submitted_reads.sh evaluation
+OLD_RESULT="$OLDRUN/dat/$CASE/read_group_from_case.${CASE}.dat"
+NEW_RESULT="dat/$CASE/read_group_from_case.${CASE}.dat"
+
+SHORT_CIRCUIT=0
+if [ -e $OLD_RESULT ]; then
+    OLDMD5=$(md5sum $OLD_RESULT | cut -f 1 -d ' ')
+    NEWMD5=$(md5sum $NEW_RESULT | cut -f 1 -d ' ')
+    printf "Comparing $OLD_RESULT and $NEW_RESULT  \n  " 1>&2
+
+    if [ "$OLDMD5" == "$NEWMD5" ]; then  # matching results.  Copy old to new 
+        SHORT_CIRCUIT=1
+        printf "... Match, will copy old results\n" 1>&2
+    else
+        printf "... Mismatch, re-evaluating results \n" 1>&2
+    fi
+fi  
+
+
+if [ "$SHORT_CIRCUIT" == 1 ]; then
+    OLD_RESULT="$OLDRUN/dat/$CASE/SR_from_read_group.$CASE.dat"
+    NEW_RESULT="dat/$CASE/SR_from_read_group.$CASE.dat"
+    >&2 echo Copying $OLD_RESULT to $NEW_RESULT
+    cp $OLD_RESULT $NEW_RESULT
+else
+    bash CPTAC3.case.discover/get_submitted_reads.sh $CASE 
+    # Writes dat/$CASE/SR_from_read_group.$CASE.dat
+fi
 test_exit_status
 
 }
