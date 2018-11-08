@@ -1,0 +1,10 @@
+# Merge SR and HAR files
+
+SR="dat/CPTAC3.Harmonized.Batch2.SR.dat"
+HAR="dat/CPTAC3.Harmonized.Batch2.HAR.dat"
+OUT="dat/CPTAC3.SR.dat"
+
+head -n 1 $SR > $OUT
+grep -h -v "^#" $SR $HAR | sort >> $OUT
+
+echo Written to $OUT
