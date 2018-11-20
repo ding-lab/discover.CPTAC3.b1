@@ -1,7 +1,5 @@
 source discover.paths.sh
 
-# Implemeting short-circuiting - do not query results which have already been done before in the project below
-OLDRUN="/home/mwyczalk_test/Projects/CPTAC3/discover/discover.CPTAC3.harmonized"
 if [ ! -d $OLDRUN ]; then
     >&2 echo Old Run $OLDRUN does not exist
     exit 1

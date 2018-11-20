@@ -1,0 +1,11 @@
+# Merge SR and HAR files
+source discover.paths.sh
+
+SR="dat/$PROJECT.SR-hg19.dat"
+HAR="dat/$PROJECT.HAR-hg38.dat"
+OUT="dat/$PROJECT.SR.dat"
+
+head -n 1 $SR > $OUT
+grep -h -v "^#" $SR $HAR | sort >> $OUT
+
+echo Written to $OUT
