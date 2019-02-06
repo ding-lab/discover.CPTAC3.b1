@@ -1,7 +1,7 @@
 # Merge SR and HAR files
 source discover.paths.sh
 
-SR="dat/$PROJECT.SR-hg19.dat"
+SR="dat/$PROJECT.SR-sub.dat"
 HAR="dat/$PROJECT.HAR-hg38.dat"
 OUT="dat/$PROJECT.SR.dat"
 
