@@ -1,4 +1,12 @@
-# Discovery based on Batch 7 and PDA cases
+Goal is to develop / test for RNA-Seq Aligned Reads
 
-New case list based on work here: /Users/mwyczalk/Projects/CPTAC3/CPTAC3.Cases/cases.analysis.011518
-In particular, case list updated with 99 new cases, see commit cdd261b in https://github.com/ding-lab/CPTAC3.catalog.git
+Focus for now on case C3L-00001 which has all data:
+
+C3L-00001   LUAD    WGS.hg19 T N A  WXS.hg19 T N A  WGS.hg38 T N A  WXS.hg38 T N A  RNA TT  AA  miRNA T  A
+
+This had no RNA-seq hg38
+
+
+C3L-00088   CCRCC   WGS.hg19 T N A  WXS.hg19 T N A  WGS.hg38 T N A  WXS.hg38 T N A  RNA TT  AA  miRNA T  A
+C3L-00090   UCEC    WGS.hg19 T N    WXS.hg19 T N    WGS.hg38 T N    WXS.hg38 T N    RNA TT      miRNA T
+C3L-00093   LUAD    WGS.hg19 T N A  WXS.hg19 T N A  WGS.hg38 T N A  WXS.hg38 T N A  RNA TT  AA  miRNA T  A

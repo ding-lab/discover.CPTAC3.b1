@@ -1,0 +1,11 @@
+# Merge SR and HAR files into AR file
+source discover.paths.sh
+
+SR="dat/${PROJECT}.SR.dat"
+HAR="dat/${PROJECT}.HAR.dat"
+OUT="dat/${PROJECT}.AR.dat"
+
+head -n 1 $SR > $OUT
+grep -h -v "^#" $SR $HAR | sort >> $OUT
+
+echo Written to $OUT
