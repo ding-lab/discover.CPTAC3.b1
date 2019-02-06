@@ -1,7 +1,7 @@
 # Define project paths and environment variables
 
 export PROJECT="RNABAM"
-export GDC_TOKEN="/home/mwyczalk_test/Projects/CPTAC3/discover/token/gdc-user-token.2019-01-28T23_27_07.488Z.txt"
+export GDC_TOKEN="/Users/mwyczalk/Projects/CPTAC3/Discovery/token/gdc-user-token.2019-01-28T23_27_07.488Z.txt"
 
 export QUERYGDC_HOME="CPTAC3.case.discover/queryGDC"
 

@@ -6,6 +6,6 @@ HAR="dat/${PROJECT}.HAR.dat"
 OUT="dat/${PROJECT}.AR.dat"
 
 head -n 1 $SR > $OUT
-grep -h -v "^#" $SR $HAR | sort >> $OUT
+grep -h -v "^#" $SR $HAR | sort -u >> $OUT
 
 echo Written to $OUT
