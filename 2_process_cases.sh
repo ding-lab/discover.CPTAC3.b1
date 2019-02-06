@@ -63,7 +63,8 @@ function process_case {
         cp $OLD_RESULT $NEW_RESULT
     else
         bash CPTAC3.case.discover/get_submitted_reads.sh $CASE 
-        # Writes dat/$CASE/SR_from_read_group.$CASE.dat
+        # Writes dat/$CASE/SR_from_read_group.$CASE.dat.tmp
+        # and dat/$CASE/SR_from_read_group.$CASE.dat
     fi
     test_exit_status
 
