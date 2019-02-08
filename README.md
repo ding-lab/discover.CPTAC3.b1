@@ -1,5 +1,7 @@
 # Project overview
 
+*TODO* Provide description of workflow.  Add discussion of harmonized aligned reads.
+
 See README.project.md for per-project information.  Details here are intended to be general.
 
 The [discover.CPTAC3.b1](https://github.com/ding-lab/discover.CPTAC3.b1) project obtains information about 
@@ -72,6 +74,20 @@ steps 1-7 must be edited to point to the correct disease files; such edits shoul
 All scripts are run in numerical order.  [CPTAC3.case.discover](https://github.com/ding-lab/CPTAC3.case.discover) has more detailed 
 description of the nature of these scripts.
 
+## Harmonized dat
+
+Describe harmonized data. Requires separate set of processing.
+
+Ading RNA?
+
+Note that we are no longer assuming Submitted Aligned Reads are hg19; rather, we will refer to them as reference = "asub" (as submitted)
+
+Final file containing SR data and HAR data is named AR (Aligned Reads)
+
+### Future work
+
+* processing should take place all the way through for one case
+
 ## SR file
 
 The principal output is written to the file `dat/my_new_project.SR.dat` (e.g., `dat/CPTAC3.b2.SR.dat`).  This file provides a comprehensive summary of submitted reads (aligned and unaligned)
@@ -107,6 +123,8 @@ Blood Derived Normal = N  (this is the principal normal used in batches 1,2)
 Primary Tumor        = T    
 Solid Tissue Normal  = A  (A for Adjacent Normal)
 Primary Blood Derived Cancer - Bone Marrow = M
+
+* Update me * this is out of date
 
 
 ## Demographics

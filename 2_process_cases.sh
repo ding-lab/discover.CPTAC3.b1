@@ -76,6 +76,7 @@ function process_case {
 
 
 
+# Case file has two tab separated columns, case name and disease
 while read L; do
 
 [[ $L = \#* ]] && continue  # Skip commented out entries
