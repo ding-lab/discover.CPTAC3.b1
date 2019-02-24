@@ -1,15 +1,15 @@
 # Define project paths and environment variables
 
-export PROJECT="RNABAM"
-export GDC_TOKEN="/Users/mwyczalk/Projects/CPTAC3/Discovery/token/gdc-user-token.2019-01-28T23_27_07.488Z.txt"
+export PROJECT="discover.20190128"
+export GDC_TOKEN="/home/mwyczalk_test/Projects/CPTAC3/discover/token/gdc-user-token.2019-01-28T23_27_07.488Z.txt"
 
 export QUERYGDC_HOME="CPTAC3.case.discover/queryGDC"
 
-#export DISCOVER_CASES="/home/mwyczalk_test/Projects/CPTAC3/CPTAC3.catalog/CPTAC3.cases.dat"
-export DISCOVER_CASES="dat/test-case.dat"
+export DISCOVER_CASES="/home/mwyczalk_test/Projects/CPTAC3/CPTAC3.catalog/CPTAC3.cases.dat"
+#export DISCOVER_CASES="dat/test-case.dat"
 
 # Implemeting short-circuiting - do not query results which have already been done before in the project below
-#OLDRUN="/home/mwyczalk_test/Projects/CPTAC3/discover/discover.HB2.5"
+OLDRUN="/home/mwyczalk_test/Projects/CPTAC3/discover/discover.HB2.5"
 
 # Called after running scripts to catch fatal (exit 1) errors
 # works with piped calls ( S1 | S2 | S3 > OUT )
