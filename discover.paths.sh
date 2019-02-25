@@ -9,7 +9,7 @@ export DISCOVER_CASES="/home/mwyczalk_test/Projects/CPTAC3/CPTAC3.catalog/CPTAC3
 #export DISCOVER_CASES="dat/test-case.dat"
 
 # Implemeting short-circuiting - do not query results which have already been done before in the project below
-OLDRUN="/home/mwyczalk_test/Projects/CPTAC3/discover/discover.HB2.5"
+OLDRUN="/home/mwyczalk_test/Projects/CPTAC3/discover/discover.20190206"
 
 # Called after running scripts to catch fatal (exit 1) errors
 # works with piped calls ( S1 | S2 | S3 > OUT )
