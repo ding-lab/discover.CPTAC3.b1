@@ -23,13 +23,16 @@
 # Or else these cases not be discovered automatically
 SUFFIX_LIST="/home/mwyczalk_test/Projects/CPTAC3/CPTAC3.catalog/SampleRename.dat"
 
+source discover.paths.sh
+
+
 if [ ! -e $SUFFIX_LIST ]; then
     >&2 echo Error: File does not exist $SUFFIX_LIST
     exit 1
 fi
 
-DATNEW="dat/discover.20190128.SR.dat"
-DATORIG="dat/discover.20190128.SR-orig.dat"
+DATNEW="dat/${PROJECT}.SR.dat"
+DATORIG="dat/${PROJECT}.SR-orig.dat"
 
 CMD_ALL=""
 FIRST=1
