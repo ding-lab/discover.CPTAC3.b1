@@ -28,7 +28,7 @@ function process_case {
     # Writes dat/$CASE/sample_from_case.$CASE.dat
     test_exit_status
 
-    OUT="dat/$CASE/sample_from_case.$CASE.dat"
+    OUT="dat/cases/$CASE/sample_from_case.$CASE.dat"
     if [ ! -s $OUT ]; then
         >&2 echo $OUT is empty.  Skipping case
         return
@@ -39,11 +39,11 @@ function process_case {
     test_exit_status
 
     # Evaluate old vs. new to see if can short-circuit the get_submitted_reads.sh evaluation
-    NEW_RESULT="dat/$CASE/read_group_from_case.${CASE}.dat"
+    NEW_RESULT="dat/cases/$CASE/read_group_from_case.${CASE}.dat"
 
     SHORT_CIRCUIT=0
     if [ ! -z $OLDRUN ]; then
-        OLD_RESULT="$OLDRUN/dat/$CASE/read_group_from_case.${CASE}.dat"
+        OLD_RESULT="$OLDRUN/dat/cases/$CASE/read_group_from_case.${CASE}.dat"
         if [ -e $OLD_RESULT ]; then
             OLDMD5=$(md5sum $OLD_RESULT | cut -f 1 -d ' ')
             NEWMD5=$(md5sum $NEW_RESULT | cut -f 1 -d ' ')
@@ -61,14 +61,14 @@ function process_case {
     fi
 
     if [ "$SHORT_CIRCUIT" == 1 ]; then
-        OLD_RESULT="$OLDRUN/dat/$CASE/SR_from_read_group.$CASE.dat"
-        NEW_RESULT="dat/$CASE/SR_from_read_group.$CASE.dat"
+        OLD_RESULT="$OLDRUN/dat/cases/$CASE/SR_from_read_group.$CASE.dat"
+        NEW_RESULT="dat/cases/$CASE/SR_from_read_group.$CASE.dat"
         >&2 echo Copying $OLD_RESULT to $NEW_RESULT
         cp $OLD_RESULT $NEW_RESULT
     else
         bash CPTAC3.case.discover/get_submitted_reads.sh $CASE 
-        # Writes dat/$CASE/SR_from_read_group.$CASE.dat.tmp
-        # and dat/$CASE/SR_from_read_group.$CASE.dat
+        # Writes dat/cases/$CASE/SR_from_read_group.$CASE.dat.tmp
+        # and dat/cases/$CASE/SR_from_read_group.$CASE.dat
     fi
     test_exit_status
 
