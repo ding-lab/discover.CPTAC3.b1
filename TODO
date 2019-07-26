@@ -1,0 +1,7 @@
+* Look into various errors when doing step 2; these should be captured better and retried if necessary,
+    We observe the following errors in 2.err, but none of them actually killed processing on this round:
+        Fatal error. Exiting
+        Fatal error: Unauthorized query.
+* Perhaps speed up using parallel for multiple simultaneous calls
+* Investigate why caching fails to capture some datasets when redundant calls exist
+
