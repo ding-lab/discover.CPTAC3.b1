@@ -10,9 +10,11 @@ else
     >&2 echo Comparing with past run $OLDRUN
 fi
 
+# TODO: allow this to be run in parallel
+# Move process_case to a separate script, have it be called in parallel context
+# Use rungo as a template: https://github.com/ding-lab/TinDaisy/blob/master/src/rungo
 
-# Note that since this takes some time to process, can run it in background as,
-# nohup bash 2_process_cases.sh &> 2.out &
+# Note that this should be run in a tmux environment, it can take several days to run
 
 function process_case {
     CASE=$1
