@@ -1,5 +1,42 @@
 source discover.paths.sh
 
+# run NJOBS in parallel.  If 0, disable parallel mode. Default 0
+NJOBS=10
+
+function test_exit_status {
+    # Evaluate return value for chain of pipes; see https://stackoverflow.com/questions/90418/exit-shell-script-based-on-process-exit-code
+    rcs=${PIPESTATUS[*]};
+    for rc in ${rcs}; do
+        if [[ $rc != 0 ]]; then
+            >&2 echo $SCRIPT Fatal ERROR.  Exiting.
+            exit $rc;
+        fi;
+    done
+}
+
+# Evaluate given command CMD either as dry run or for real
+function run_cmd {
+    CMD=$1
+    DRYRUN=$2
+    QUIET=$3
+
+    if [ -z $QUIET ]; then
+        QUIET=0
+    fi
+
+    if [ "$DRYRUN" == "d" ]; then
+        if [ "$QUIET" == 0 ]; then
+            >&2 echo Dryrun: $CMD
+        fi
+    else
+        if [ "$QUIET" == 0 ]; then
+            >&2 echo Running: $CMD
+        fi
+        eval $CMD
+        test_exit_status
+    fi
+}
+
 >&2 echo Iterating over $DISCOVER_CASES
 if [ -z $OLDRUN ]; then
     >&2 echo No prior runs
@@ -8,6 +45,7 @@ elif [ ! -d $OLDRUN ]; then
     exit 1
 else
     >&2 echo Comparing with past run $OLDRUN
+    OR_ARG="-R $OLDRUN"
 fi
 
 # TODO: allow this to be run in parallel
@@ -16,76 +54,50 @@ fi
 
 # Note that this should be run in a tmux environment, it can take several days to run
 
-function process_case {
-    CASE=$1
-    DIS=$2
+# Used for `parallel` job groups 
+NOW=$(date)
+MYID=$(date +%Y%m%d%H%M%S)
 
-    if [ -z $CASE ]; then
-    return
-    fi
+if [ $NJOBS == 0 ] ; then
+    >&2 echo Running single case at a time \(single mode\)
+else
+    >&2 echo Job submission with $NJOBS cases in parallel
+fi
 
-    >&2 echo Processing $CASE \($DIS\)
-
-    bash CPTAC3.case.discover/get_sample.sh $CASE 
-    # Writes dat/$CASE/sample_from_case.$CASE.dat
-    test_exit_status
-
-    OUT="dat/cases/$CASE/sample_from_case.$CASE.dat"
-    if [ ! -s $OUT ]; then
-        >&2 echo $OUT is empty.  Skipping case
-        return
-    fi
-
-    bash CPTAC3.case.discover/get_read_groups.sh $CASE 
-    # Writes dat/$CASE/read_group_from_case.$CASE.dat
-    test_exit_status
-
-    # Evaluate old vs. new to see if can short-circuit the get_submitted_reads.sh evaluation
-    NEW_RESULT="dat/cases/$CASE/read_group_from_case.${CASE}.dat"
-
-    SHORT_CIRCUIT=0
-    if [ ! -z $OLDRUN ]; then
-        OLD_RESULT="$OLDRUN/dat/cases/$CASE/read_group_from_case.${CASE}.dat"
-        if [ -e $OLD_RESULT ]; then
-            OLDMD5=$(md5sum $OLD_RESULT | cut -f 1 -d ' ')
-            NEWMD5=$(md5sum $NEW_RESULT | cut -f 1 -d ' ')
-            printf "Comparing $OLD_RESULT and $NEW_RESULT  \n  " 1>&2
-
-            if [ "$OLDMD5" == "$NEWMD5" ]; then  # matching results.  Copy old to new 
-                SHORT_CIRCUIT=1
-                printf " OLDRUN Match, will copy old results\n" 1>&2
-            else
-                printf " OLDRUN Mismatch, re-evaluating results \n" 1>&2
-            fi
-        fi  
-    else
-        printf " OLDRUN not defined, evaluating results \n" 1>&2
-    fi
-
-    if [ "$SHORT_CIRCUIT" == 1 ]; then
-        OLD_RESULT="$OLDRUN/dat/cases/$CASE/SR_from_read_group.$CASE.dat"
-        NEW_RESULT="dat/cases/$CASE/SR_from_read_group.$CASE.dat"
-        >&2 echo Copying $OLD_RESULT to $NEW_RESULT
-        cp $OLD_RESULT $NEW_RESULT
-    else
-        bash CPTAC3.case.discover/get_submitted_reads.sh $CASE 
-        # Writes dat/cases/$CASE/SR_from_read_group.$CASE.dat.tmp
-        # and dat/cases/$CASE/SR_from_read_group.$CASE.dat
-    fi
-    test_exit_status
-
-}
-
-
+LOGD="./logs"
+mkdir -p $LOGD
 
 # Case file has two tab separated columns, case name and disease
 while read L; do
 
-[[ $L = \#* ]] && continue  # Skip commented out entries
+    [[ $L = \#* ]] && continue  # Skip commented out entries
 
-CASE=$(echo "$L" | cut -f 1 )
-DIS=$(echo "$L" | cut -f 2 )
+    CASE=$(echo "$L" | cut -f 1 )
+    DIS=$(echo "$L" | cut -f 2 )
 
-process_case $CASE $DIS
+    STDOUT_FN="$LOGD/${CASE}.out"
+    STDERR_FN="$LOGD/${CASE}.err"
+
+    CMD="bash CPTAC3.case.discover/process_case.sh $OR_ARG $CASE $DIS > $STDOUT_FN 2> $STDERR_FN"
+
+    if [ $NJOBS != 0 ]; then
+        JOBLOG="$LOGD/$CASE.log"
+        CMD=$(echo "$CMD" | sed 's/"/\\"/g' )   # This will escape the quotes in $CMD 
+        CMD="parallel --semaphore -j$NJOBS --id $MYID --joblog $JOBLOG --tmpdir $LOGD \"$CMD\" "
+    fi
+
+    run_cmd "$CMD" $DRYRUN
+    >&2 echo Written to $STDOUT_FN
+
+    if [ $JUSTONE ]; then
+        break
+    fi
 
 done < $DISCOVER_CASES
+
+if [ $NJOBS != 0 ]; then
+    # this will wait until all jobs completed
+    CMD="parallel --semaphore --wait --id $MYID"
+    run_cmd "$CMD" $DRYRUN
+fi
+
