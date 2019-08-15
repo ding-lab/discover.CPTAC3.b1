@@ -7,7 +7,7 @@ mkdir -p logs
 
 NOW=$(date)
 >&2 echo [ $NOW ] Running 2_process_cases.sh
-bash ./2_process_cases.sh 2> logs/2.err > logs/2.out
+bash ./2_process_cases.sh -J 10 2> logs/2.err > logs/2.out
 test_exit_status
 
 NOW=$(date)
