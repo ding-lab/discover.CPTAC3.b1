@@ -3,4 +3,6 @@
         Fatal error. Exiting
         Fatal error: Unauthorized query.
 * Investigate why caching fails to capture some datasets when redundant calls exist
-* Incorporate HAR queries into step 2, to take advantage of parallelization
+* Parallelize step 4 (HAR)
+* Have steps 2 and 4 write logs to logs/step2 and logs/step4, respectively
+* parallelize demographics
