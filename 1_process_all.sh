@@ -42,3 +42,8 @@ test_exit_status
 
 NOW=$(date)
 >&2 echo [ $NOW ] Discovery complete
+
+if grep -q -i error logs/*.* ; then
+    >&2 echo The following files had errors or warnings:
+    grep -il error logs/*.*
+fi
